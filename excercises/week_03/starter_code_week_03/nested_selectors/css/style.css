@@ -1,0 +1,32 @@
+body {
+  font-family: Georgia, serif;
+  line-height: 1.4;
+  margin: 3em;
+	color: #00CC99;
+}
+
+
+
+/* Step 1: First make all the anchors on the page #FFA7C0 */
+
+p {
+    color: pink;
+}
+
+/* Step 2: Then make the anchors within the header nav #D16121 */
+
+a {
+    color : #FFFFFF;
+}
+/* Step 3: Lastly, make the anchors in the footer nav #FFE540 */
+
+
+header > nav a{
+    color: #EB7F00;
+}
+/*3. Change the text color for the paragraph element to #EB7F00*/
+
+footer nav a {
+    color: yellow;
+
+}

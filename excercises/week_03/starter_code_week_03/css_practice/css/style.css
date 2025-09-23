@@ -1,0 +1,36 @@
+/*------ PART 1 -------------------------*/
+/* 1. Change the background-color for the body to #1695A3*/
+body {
+    background-color: #1695A3;
+    color : #FFFFFF;
+}
+
+
+/* 2. Change the text color for the body to #FFFFFF*/
+
+
+/* 3. Change the text color for the paragraph element to #EB7F00*/
+
+p {
+    color: pink;
+}
+
+/*------ PART 2 -------------------------*/
+/*1. Center the h3*/
+
+a {
+    color : #FFFFFF;
+}
+
+/*2. Change the font-size of the paragraph element to 40px and the font-weight to bold*/
+
+header > nav a{
+    color: #EB7F00;
+}
+/*3. Change the text color for the paragraph element to #EB7F00*/
+
+footer nav a {
+    color: yellow
+}
+
+/*4. Remove the default underline from the anchor tag below*/
