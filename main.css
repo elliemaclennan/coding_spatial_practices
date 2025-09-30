@@ -26,3 +26,12 @@ h3 {
 body {
     font-family: 'Courier New', Courier, monospace;
 }
+
+
+.box {
+width: 110px;
+height: 40px;
+border: 5px solid blue;
+padding: 10px;
+padding-bottom: 40px;
+}
