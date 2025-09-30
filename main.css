@@ -35,3 +35,13 @@ border: 5px solid blue;
 padding: 10px;
 padding-bottom: 40px;
 }
+
+
+.grid-container {
+ display: grid;
+ grid-template-columns: 150px 150px 150px;
+ grid-template-rows: 150px 150px 150px;}
+
+ .item {
+ background-color: yellow;
+}
