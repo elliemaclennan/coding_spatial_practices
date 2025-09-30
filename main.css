@@ -28,6 +28,11 @@ body {
 }
 
 
+.big-box {
+width: 445px;
+height: 320px;
+}
+
 .box {
 width: 110px;
 height: 40px;
