@@ -58,5 +58,6 @@ padding-bottom: 40px;
     width: 190px;
     height: 10px;
     padding: 10px;
+    margin: 10px;
     border: 3px dashed blue;
 }
