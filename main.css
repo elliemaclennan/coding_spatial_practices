@@ -29,7 +29,7 @@ body {
 
 
 .big-box {
-width: 445px;
+width: 480px;
 height: 320px;
 }
 
@@ -48,5 +48,15 @@ padding-bottom: 40px;
  grid-template-rows: 150px 150px 150px;}
 
  .item {
- background-color: yellow;
+ background-color: white;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+    width: 190px;
+    height: 10px;
+    padding: 10px;
+    border: 3px dashed blue;
 }
