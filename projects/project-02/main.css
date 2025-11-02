@@ -1,0 +1,94 @@
+h1 {
+    color: orange;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
+    font-size: 72px;
+}
+
+.public-good {
+  color: rgb(255, 166, 0);
+  font-size: 60px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration-color: orange;
+  animation: flash 2s ease-in-out infinite;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.entry {
+  flex: 0 1 300px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.entry:hover img {
+  transform: scale(1.05);
+}
+
+.entry-img {
+  width: 300px;       
+  height: auto;       
+  transition: transform 0.3s ease;
+}
+
+.entry-img:hover {
+  transform: scale(1.05); 
+}
+
+
+.popup {
+  display: none; 
+  position: fixed;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.popup-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 500px;
+  text-align: center;
+  animation: popUp 0.3s ease;
+}
+
+
+.popup-content img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
