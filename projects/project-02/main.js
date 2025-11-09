@@ -1,24 +1,27 @@
-const entries = document.querySelectorAll('.entry');
-const popup = document.getElementById('popup');
-const popupImg = document.getElementById('popupImg');
-const popupText = document.getElementById('popupText');
-const closePopup = document.getElementById('closePopup');
+document.addEventListener("DOMContentLoaded", () => {
+  const entries = document.querySelectorAll('.entry');
+  const popup = document.getElementById('popup');
+  const popupText = document.getElementById('popupText');
+  const closePopup = document.getElementById('closePopup');
 
-entries.forEach(entry => {
-  entry.addEventListener('click', () => {
-    const imgSrc = entry.querySelector('img').src;
-    const infoText = entry.getAttribute('data-info');
+  entries.forEach(entry => {
+    entry.addEventListener('click', () => {
+      popupText.textContent = entry.dataset.info; 
+      popup.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; 
+    });
+  });
 
-    popupImg.src = imgSrc;
-    popupText.textContent = infoText;
-    popup.style.display = 'flex';
+  closePopup.addEventListener('click', () => {
+    popup.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
+
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
   });
 });
 
-closePopup.addEventListener('click', () => {
-  popup.style.display = 'none';
-});
-
-popup.addEventListener('click', e => {
-  if (e.target === popup) popup.style.display = 'none';
-});
