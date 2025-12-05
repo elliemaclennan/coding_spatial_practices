@@ -18,13 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("popup");
     const content = document.getElementById("popup-content");
 
-    if (aboutBtn) {
-        aboutBtn.addEventListener("click", () => {
-            content.textContent =
-                "This visualization shows US billion-dollar disasters. Red numbers represent number of deaths and blue values represent the unadjusted costs associated with each disaster. Click on any number to see which event it belongs to. As you can see by selecting only the events with costs higher than the annual US national defense spending (an estimated 800 billion), many disasters still far surpass this number. Time to invest more in mitigation and preparedness spending? Author: Ellie Maclennan.";
-            popup.classList.remove("hidden");
-        });
-    }
+if (aboutBtn) {
+    aboutBtn.addEventListener("click", () => {
+        content.innerHTML = `
+            <p>This visualization shows US billion-dollar disasters.</p>
+            <p>Red numbers represent the number of deaths, and blue values represent the unadjusted costs associated with each disaster. Click on any number to see which event it belongs to.</p>
+            <p>As you can see by selecting only the events with costs higher than the annual US national defense spending (an estimated $800 billion), many disasters still far surpass this number.</p>
+            <p>Time to invest more in mitigation and preparedness spending?</p>
+            <p><strong>Author:</strong> Ellie Maclennan</p>
+        `;
+        popup.classList.remove("hidden");
+    });
+}
 
     // --- FILTER toggle button wiring ---
     const filterBtn = document.getElementById("filter-btn");

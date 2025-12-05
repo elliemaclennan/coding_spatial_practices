@@ -96,17 +96,22 @@ h1 {
 }
 
 /* Popup content */
+/* Popup content */
 #popup-content {
     background: black;
     padding: 20px;
     border-radius: 10px;
     font-size: 22px;
     font-family: monospace;
-    max-width: 350px;
+    max-width: 90vw;      /* allow it to shrink with window width */
+    max-height: 80vh;     /* allow vertical scrolling if too tall */
+    overflow-y: auto;      /* scroll vertically if content exceeds height */
     text-align: center;
     color: rgb(151, 248, 5); /* neon green */
     letter-spacing: 0.5px;
+    box-sizing: border-box;  /* include padding in width calculations */
 }
+
 
 #filter-btn {
     position: absolute;
