@@ -88,7 +88,7 @@ function showPopup(type, eventName) {
     if (type === "death") {
         msg = `Deaths from ${eventName}`;
     } else if (type === "cost") {
-        msg = `The cost of ${eventName}`;
+        msg = `The estimated cost of ${eventName}`;
     } else {
         msg = eventName;
     }
