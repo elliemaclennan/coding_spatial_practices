@@ -27,7 +27,7 @@ function parseCSV(text) {
 }
 
 
-// ---- Scatter values randomly around the page (NOW CLICKABLE) ----
+// ---- Scatter values randomly around the page ----
 function scatterValues(data) {
     const container = document.getElementById("container");
     const width = window.innerWidth - 100;
@@ -42,16 +42,14 @@ function scatterValues(data) {
             div.className = "death";
             div.textContent = d;
 
-            // Store event name
             div.dataset.eventName = row["Name"];
+            div.dataset.type = "death";   // <-- ADD TYPE
 
-            // Random position
             div.style.left = Math.random() * width + "px";
             div.style.top = Math.random() * height + "px";
 
-            // Click reveals event name in custom popup
             div.addEventListener("click", () => {
-                showPopup(div.dataset.eventName);
+                showPopup(div.dataset.type, div.dataset.eventName);
             });
 
             container.appendChild(div);
@@ -64,16 +62,14 @@ function scatterValues(data) {
             div.className = "cost";
             div.textContent = cost;
 
-            // Store event name
             div.dataset.eventName = row["Name"];
+            div.dataset.type = "cost";   // <-- ADD TYPE
 
-            // Random position
             div.style.left = Math.random() * width + "px";
             div.style.top = Math.random() * height + "px";
 
-            // Click reveals event name in custom popup
             div.addEventListener("click", () => {
-                showPopup(div.dataset.eventName);
+                showPopup(div.dataset.type, div.dataset.eventName);
             });
 
             container.appendChild(div);
@@ -82,14 +78,23 @@ function scatterValues(data) {
 }
 
 
-// ---- Custom popup system (replaces alert) ----
-function showPopup(text) {
+// ---- Custom popup ----
+function showPopup(type, eventName) {
     const popup = document.getElementById("popup");
     const content = document.getElementById("popup-content");
 
-    content.textContent = text;
+    let msg = "";
+
+    if (type === "death") {
+        msg = `Deaths from ${eventName}`;
+    } else if (type === "cost") {
+        msg = `The cost of ${eventName}`;
+    } else {
+        msg = eventName;
+    }
+
+    content.textContent = msg;
     popup.classList.remove("hidden");
 
-    // Click anywhere to close
     popup.onclick = () => popup.classList.add("hidden");
 }
