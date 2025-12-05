@@ -114,10 +114,10 @@ h1 {
 
 
 #filter-btn {
-    position: absolute;
-    bottom: 20px;           /* distance from bottom */
-    left: 50%;              /* start at horizontal center */
-    transform: translateX(-50%);  /* shift left by half width to truly center */
+    position: fixed;       /* stay visible even if page scrolls or viewport shrinks */
+    bottom: 20px;          /* distance from bottom */
+    left: 50%;             /* center horizontally */
+    transform: translateX(-50%);
     padding: 8px 14px;
     background: black;
     color: white;
@@ -133,3 +133,10 @@ h1 {
     color: black;
 }
 
+/* Optional: slightly smaller button on tiny screens */
+@media (max-height: 400px) {
+    #filter-btn {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}

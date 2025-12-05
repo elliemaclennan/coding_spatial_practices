@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
 if (aboutBtn) {
     aboutBtn.addEventListener("click", () => {
         content.innerHTML = `
-            <p>This visualization shows US billion-dollar disasters.</p>
-            <p>Red numbers represent the number of deaths, and blue values represent the unadjusted costs associated with each disaster. Click on any number to see which event it belongs to.</p>
+            <p>This visualization shows billion-dollar US disasters.</p>
+            <p>Red numbers represent the number of deaths associated with a given disaster, and blue values represent the unadjusted costs of the disaster. Click on any number to see which event it belongs.</p>
             <p>As you can see by selecting only the events with costs higher than the annual US national defense spending (an estimated $800 billion), many disasters still far surpass this number.</p>
             <p>Time to invest more in mitigation and preparedness spending?</p>
             <p><strong>Author:</strong> Ellie Maclennan</p>
