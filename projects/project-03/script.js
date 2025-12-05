@@ -49,9 +49,9 @@ function scatterValues(data) {
             div.style.left = Math.random() * width + "px";
             div.style.top = Math.random() * height + "px";
 
-            // Click reveals event name
+            // Click reveals event name in custom popup
             div.addEventListener("click", () => {
-                alert(div.dataset.eventName);
+                showPopup(div.dataset.eventName);
             });
 
             container.appendChild(div);
@@ -71,12 +71,25 @@ function scatterValues(data) {
             div.style.left = Math.random() * width + "px";
             div.style.top = Math.random() * height + "px";
 
-            // Click reveals event name
+            // Click reveals event name in custom popup
             div.addEventListener("click", () => {
-                alert(div.dataset.eventName);
+                showPopup(div.dataset.eventName);
             });
 
             container.appendChild(div);
         }
     });
+}
+
+
+// ---- Custom popup system (replaces alert) ----
+function showPopup(text) {
+    const popup = document.getElementById("popup");
+    const content = document.getElementById("popup-content");
+
+    content.textContent = text;
+    popup.classList.remove("hidden");
+
+    // Click anywhere to close
+    popup.onclick = () => popup.classList.add("hidden");
 }
