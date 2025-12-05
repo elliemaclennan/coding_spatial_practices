@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (aboutBtn) {
         aboutBtn.addEventListener("click", () => {
             content.textContent =
-                "This visualization shows US billion-dollar disasters. Red numbers represent number of deaths and blue values represent the unadjusted costs associated with each disaster. Click on any number to see which event it belongs to. As you can see by selecting only the events with costs higher than the annual US national defense spending (an estimated 800 billion), many disasters still far surpass this number.";
+                "This visualization shows US billion-dollar disasters. Red numbers represent number of deaths and blue values represent the unadjusted costs associated with each disaster. Click on any number to see which event it belongs to. As you can see by selecting only the events with costs higher than the annual US national defense spending (an estimated 800 billion), many disasters still far surpass this number. Time to invest more in mitigation and preparedness spending? Author: Ellie Maclennan.";
             popup.classList.remove("hidden");
         });
     }
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 // show all events
                 scatterValues(allData);
-                filterBtn.textContent = "only show events more costly than annual US national defence spending";
+                filterBtn.textContent = "only show events more costly than annual US national defense spending";
             }
         });
     }
