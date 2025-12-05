@@ -9,6 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(err);
             document.body.innerHTML += "<p>Failed to fetch/parse CSV.</p>";
         });
+
+    // --- ABOUT button wiring (integrated into same DOMContentLoaded to avoid conflicts) ---
+    const aboutBtn = document.getElementById("about-btn");
+    const popup = document.getElementById("popup");
+    const content = document.getElementById("popup-content");
+
+    if (aboutBtn) {
+        aboutBtn.addEventListener("click", () => {
+            // Put a short helpful about message — you can edit this later
+            content.textContent =
+                "This visualization shows US billion-dollar disasters. Red numbers represent number of deaths and blue values represents the unadjusted costs associated with each disaster. Click on any number to see which event it belongs to.";
+            popup.classList.remove("hidden");
+        });
+    }
+
+    // Close popup when clicking anywhere on the overlay
+    if (popup) {
+        popup.addEventListener("click", () => {
+            popup.classList.add("hidden");
+        });
+    }
 });
 
 
@@ -73,7 +94,7 @@ function scatterValues(data) {
 
         // ---- COST ----
         const cost = row[" Cost"] || row["Cost"] || "";
-        if (cost.trim() !== "") {
+        if (cost && cost.trim() !== "") {
             let div = document.createElement("div");
             div.className = "cost";
             div.textContent = cost;
@@ -143,5 +164,6 @@ function showPopup(type, eventName) {
     content.textContent = msg;
     popup.classList.remove("hidden");
 
+    // clicking overlay closes it (handled in DOMContentLoaded), but keep safety here too
     popup.onclick = () => popup.classList.add("hidden");
 }
