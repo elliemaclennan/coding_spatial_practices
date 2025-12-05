@@ -27,11 +27,15 @@ function parseCSV(text) {
 }
 
 
-// ---- Scatter values randomly around the page ----
+// --------------------------------------------
+// Scattered values + drifting/swirl animation
+// --------------------------------------------
 function scatterValues(data) {
     const container = document.getElementById("container");
     const width = window.innerWidth - 100;
     const height = window.innerHeight - 100;
+
+    const movingElements = [];
 
     data.forEach(row => {
 
@@ -43,10 +47,22 @@ function scatterValues(data) {
             div.textContent = d;
 
             div.dataset.eventName = row["Name"];
-            div.dataset.type = "death";   // <-- ADD TYPE
+            div.dataset.type = "death";
 
-            div.style.left = Math.random() * width + "px";
-            div.style.top = Math.random() * height + "px";
+            // initial randomized location
+            let x = Math.random() * width;
+            let y = Math.random() * height;
+            div.style.left = x + "px";
+            div.style.top = y + "px";
+
+            // random drifting speeds
+            movingElements.push({
+                el: div,
+                x: x,
+                y: y,
+                dx: (Math.random() - 0.5) * 0.5,
+                dy: (Math.random() - 0.5) * 0.5
+            });
 
             div.addEventListener("click", () => {
                 showPopup(div.dataset.type, div.dataset.eventName);
@@ -63,10 +79,20 @@ function scatterValues(data) {
             div.textContent = cost;
 
             div.dataset.eventName = row["Name"];
-            div.dataset.type = "cost";   // <-- ADD TYPE
+            div.dataset.type = "cost";
 
-            div.style.left = Math.random() * width + "px";
-            div.style.top = Math.random() * height + "px";
+            let x = Math.random() * width;
+            let y = Math.random() * height;
+            div.style.left = x + "px";
+            div.style.top = y + "px";
+
+            movingElements.push({
+                el: div,
+                x: x,
+                y: y,
+                dx: (Math.random() - 0.5) * 0.5,
+                dy: (Math.random() - 0.5) * 0.5
+            });
 
             div.addEventListener("click", () => {
                 showPopup(div.dataset.type, div.dataset.eventName);
@@ -75,6 +101,27 @@ function scatterValues(data) {
             container.appendChild(div);
         }
     });
+
+    // ---- Animation loop for gentle drifting/swirl ----
+    function animate() {
+        movingElements.forEach(p => {
+
+            // Move gently
+            p.x += p.dx;
+            p.y += p.dy;
+
+            // Bounce off edges
+            if (p.x < 0 || p.x > width) p.dx *= -1;
+            if (p.y < 0 || p.y > height) p.dy *= -1;
+
+            p.el.style.left = p.x + "px";
+            p.el.style.top = p.y + "px";
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 }
 
 
