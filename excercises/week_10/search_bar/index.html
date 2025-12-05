@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="search-bar">
+        <input id="searchInput" type="text" placeholder="Search plants..." />
+        <p id="resultsCount" class="results-count">Showing all items</p>
+    </header>
+
+    <section class="results" id="resultsContainer">
+    <!-- your JS-rendered cards go here -->
+    </section>
+
+    <section class="saved" id="savedContainer">
+        <h2>Saved</h2>
+        <p class="saved-hint">Click a card to pin it here.</p>
+        <div class="saved-list" id="savedList"></div>
+    </section>
+    <script src="main.js"></script>
+</body>
+</html>

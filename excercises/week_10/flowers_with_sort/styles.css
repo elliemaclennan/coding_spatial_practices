@@ -1,0 +1,14 @@
+li {
+  list-style-type: none;
+  border: 2px solid #141414;
+  padding: 10px;
+  margin: 10px;
+  width: 160px;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
