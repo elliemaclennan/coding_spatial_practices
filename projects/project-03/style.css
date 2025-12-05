@@ -107,3 +107,24 @@ h1 {
     color: rgb(151, 248, 5); /* neon green */
     letter-spacing: 0.5px;
 }
+
+#filter-btn {
+    position: absolute;
+    bottom: 20px;           /* distance from bottom */
+    left: 50%;              /* start at horizontal center */
+    transform: translateX(-50%);  /* shift left by half width to truly center */
+    padding: 8px 14px;
+    background: black;
+    color: white;
+    border: 2px solid white;
+    font-family: monospace;
+    cursor: pointer;
+    border-radius: 6px;
+    z-index: 6000;
+    pointer-events: auto;
+}
+#filter-btn:hover {
+    background: white;
+    color: black;
+}
+

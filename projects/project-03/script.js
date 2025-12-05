@@ -1,37 +1,63 @@
+let allData = [];  // store full CSV globally
+let filterActive = false; // track toggle state
+
 document.addEventListener("DOMContentLoaded", () => {
     fetch("events.csv")
         .then(resp => resp.text())
         .then(text => {
-            const data = parseCSV(text);
-            scatterValues(data);
+            allData = parseCSV(text);
+            scatterValues(allData);
         })
         .catch(err => {
             console.error(err);
             document.body.innerHTML += "<p>Failed to fetch/parse CSV.</p>";
         });
 
-    // --- ABOUT button wiring (integrated into same DOMContentLoaded to avoid conflicts) ---
+    // --- ABOUT button wiring ---
     const aboutBtn = document.getElementById("about-btn");
     const popup = document.getElementById("popup");
     const content = document.getElementById("popup-content");
 
     if (aboutBtn) {
         aboutBtn.addEventListener("click", () => {
-            // Put a short helpful about message — you can edit this later
             content.textContent =
-                "This visualization shows US billion-dollar disasters. Red numbers represent number of deaths and blue values represents the unadjusted costs associated with each disaster. Click on any number to see which event it belongs to.";
+                "This visualization shows US billion-dollar disasters. Red numbers represent number of deaths and blue values represent the unadjusted costs associated with each disaster. Click on any number to see which event it belongs to. As you can see by selecting only the events with costs higher than the annual US national defense spending (an estimated 800 billion), many disasters still far surpass this number.";
             popup.classList.remove("hidden");
         });
     }
 
-    // Close popup when clicking anywhere on the overlay
+    // --- FILTER toggle button wiring ---
+    const filterBtn = document.getElementById("filter-btn");
+    if (filterBtn) {
+        filterBtn.addEventListener("click", () => {
+            filterActive = !filterActive; // toggle state
+            const container = document.getElementById("container");
+            container.innerHTML = ""; // clear all numbers
+
+            if (filterActive) {
+                // show only costly events
+                const filtered = allData.filter(row => {
+                    const costStr = row[" Cost"] || row["Cost"] || "";
+                    const costNum = Number(costStr.replace(/[^0-9.-]+/g,""));
+                    return !isNaN(costNum) && costNum > 800000000000;
+                });
+                scatterValues(filtered);
+                filterBtn.textContent = "show all events";
+            } else {
+                // show all events
+                scatterValues(allData);
+                filterBtn.textContent = "only show events more costly than annual US national defence spending";
+            }
+        });
+    }
+
+    // Close popup when clicking anywhere on overlay
     if (popup) {
         popup.addEventListener("click", () => {
             popup.classList.add("hidden");
         });
     }
 });
-
 
 // ---- Parse CSV (supports quoted fields) ----
 function parseCSV(text) {
@@ -46,7 +72,6 @@ function parseCSV(text) {
         return obj;
     });
 }
-
 
 // --------------------------------------------
 // Scattered values + drifting/swirl animation
@@ -70,13 +95,11 @@ function scatterValues(data) {
             div.dataset.eventName = row["Name"];
             div.dataset.type = "death";
 
-            // initial randomized location
             let x = Math.random() * width;
             let y = Math.random() * height;
             div.style.left = x + "px";
             div.style.top = y + "px";
 
-            // random drifting speeds
             movingElements.push({
                 el: div,
                 x: x,
@@ -123,28 +146,20 @@ function scatterValues(data) {
         }
     });
 
-    // ---- Animation loop for gentle drifting/swirl ----
     function animate() {
         movingElements.forEach(p => {
-
-            // Move gently
             p.x += p.dx;
             p.y += p.dy;
-
-            // Bounce off edges
             if (p.x < 0 || p.x > width) p.dx *= -1;
             if (p.y < 0 || p.y > height) p.dy *= -1;
-
             p.el.style.left = p.x + "px";
             p.el.style.top = p.y + "px";
         });
-
         requestAnimationFrame(animate);
     }
 
     animate();
 }
-
 
 // ---- Custom popup ----
 function showPopup(type, eventName) {
@@ -152,7 +167,6 @@ function showPopup(type, eventName) {
     const content = document.getElementById("popup-content");
 
     let msg = "";
-
     if (type === "death") {
         msg = `Deaths from ${eventName}`;
     } else if (type === "cost") {
@@ -164,6 +178,5 @@ function showPopup(type, eventName) {
     content.textContent = msg;
     popup.classList.remove("hidden");
 
-    // clicking overlay closes it (handled in DOMContentLoaded), but keep safety here too
     popup.onclick = () => popup.classList.add("hidden");
 }
